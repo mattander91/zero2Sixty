@@ -2,6 +2,13 @@ const axios = require('axios');
 
 
 const getData = (url, method) => {
+	const options = {
+        method: method,
+        headers: {
+          'Content-Type': 'text/html',
+          'Accept': 'text/html'
+        }
+      }
 	axios.get(url, options)
     .then(response => {
         console.log('resss: ', response.data); //type of returned content is object
@@ -14,11 +21,11 @@ const getData = (url, method) => {
         //console.log(err);
         //handle that errrrr
     });
-});
+};
 
-const getMakes = () => {
-	//get makes from zero2sixty homepage
-}
+const getMakes = (htmlString) => {
+	//parse HTML string to get make names
+	//return array of names
 
 module.exports = {
 	getData: getData
