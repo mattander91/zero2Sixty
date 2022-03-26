@@ -26,6 +26,7 @@ const getData = (url, method) => {
 const getMakes = (htmlString) => {
 	//parse HTML string to get make names
 	//return array of names
+}
 
 module.exports = {
 	getData: getData

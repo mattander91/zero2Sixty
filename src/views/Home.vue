@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p>Select make, model, year</p>
+    <p class="large">Select make, model, year</p>
     <CarSelect :carData="carData"/>
   </div>
 </template>
@@ -8,6 +8,7 @@
 <script>
 // @ is an alias to /src
 import CarSelect from '@/components/CarSelect.vue'
+import '@/assets/styles/main.css'
 
 export default {
 
