@@ -22,9 +22,9 @@ app.post('/getPage', (req, res) => {
     // //URL pattern: https://www.zeroto60times.com/vehicle-make/bmw-0-60-mph-times/    
     const make = req.body.make;
     // let url = "https://www.zeroto60times.com/vehicle-make/" + make + "-0-60-mph-times"
-    let url = "https://www.0-60specs.com/" + make;
-    const makeString = helpers.getData(url, "GET");
-    const makes = helpers.getMakes(makeString); //array of makes
+    let url = "https://www.0-60specs.com/"// + make;
+    const makesString = helpers.getData(url, "GET");
+    //const makes = helpers.getMakes(makeString); //array of makes
     //send to front end;
 });
 
