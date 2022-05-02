@@ -1,16 +1,19 @@
 <template>
   <div class="hello">
     <div>
-      <label>Select Mfg</label>
-      <select v-model="make">
+      <label>Select Manufacturer</label>
+      <select v-model="make" @change="getModels">
         <option v-for="(make, index) in makes" :key="index">{{make}}</option>
       </select>
       <br>
       <label>Select Model</label>
+      <select>
+        <option v-for="(model) in models" :key="model">{{model}}</option>
+      </select>
+      <br>
+      <label>Select Vehicle</label>
       <select></select>
       <br>
-      <!-- <label>Select year</label>
-      <select></select>  -->
       <button @click="getHTMLFile">Submit</button>
     </div>
   </div>
@@ -19,41 +22,32 @@
 <script>
 
 // const axios = require('axios');
+// const helpers = require('../helpers/helpers.js');
+const axios = require('axios');
 
 export default {
   data() {
     return {
-      model: null,
+      models: null,
       make: null,
-      makes: ['BMW', 'Ford']
+      makes: null
     }
   },
   methods: {
-    getHTMLFile() {
-      
-      const linkData = {
-        model: this.model,
-        make: this.make
-      };
-      const options = {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(linkData)
-      };
-      console.log('sending: ', linkData);
-      fetch('http://localhost:4000/getPage', options)
-      .then(response => {
-        console.log('resss: ', response);
-        return response.text()
-      })
-      .then(data => {
-        console.log('data: ', data);
-      }).catch(err => {
-        console.log(err);
-      })
+
+    getMakes() {
+      axios.get('http://localhost:4000/getMakes').then(response => {
+        this.makes = response.data.makes;
+      });
+    },
+    
+    getModels() {
+      axios.post('http://localhost:4000/getModels', {make: this.make}).then(response => {
+        this.models = response.data.models;
+      });
+    },
+
+    getVehicle() {
 
     }
 
@@ -61,9 +55,11 @@ export default {
   computed: {
 
   },
-  mounted: () => {
+  mounted:  function() {
+    this.getMakes();
 
   },
+
   name: 'CarSelect',
   props: ['carData']
 }
