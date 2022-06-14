@@ -20,25 +20,20 @@ app.use(express.json());
 
 const port = 4000;
 
-app.post('/getPage', (req, res) => {
-    // //URL pattern: https://www.zeroto60times.com/vehicle-make/bmw-0-60-mph-times/    
-    const make = req.body.make;
-    // let url = "https://www.zeroto60times.com/vehicle-make/" + make + "-0-60-mph-times"
-    let url = "https://www.0-60specs.com/"// + make;
-    // const makesString = helpers.getData(url, "GET");
-    //const makes = helpers.getMakes(makeString); //array of makes
-    //send to front end;
-});
-
 app.get('/getMakes', (req, res) => {
-  axios.get('https://www.0-60specs.com').then((response) => {
+  axios.get('https://www.zeroto60times.com/browse-by-make').then((response) => {
     const makes = helpers.getMakes(response.data);
     res.send(JSON.stringify({makes: makes}));
   });
 });
 
+//getYears
+
 app.post('/getModels', (req, res) => {
-  axios.get(`https://www.0-60specs.com/${req.body.make}`).then((response) => {
+  `https://www.zeroto60times.com/vehicle-make/ariel-atom-0-60-mph-times`
+  let makeWord = req.body.make.split(' '); 
+  const make =  makeWord.length > 1 ? makeWord.join('-') : req.body.make;
+  axios.get(`https://www.zeroto60times.com/vehicle-make/${make}-0-60-mph-times`).then((response) => {
     const models = helpers.getModels(response.data);
     res.send(JSON.stringify({models: models}));
   });

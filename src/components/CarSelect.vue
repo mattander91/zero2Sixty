@@ -55,9 +55,8 @@ export default {
   computed: {
 
   },
-  mounted:  function() {
-    this.getMakes();
-
+  mounted: function() {
+    this.getMakes();    
   },
 
   name: 'CarSelect',
