@@ -14,12 +14,12 @@ const getMakes = (htmlString) => {
 const getModels = (htmlString) => {
     let models = [];
     const $ = cheerio.load(htmlString);
-    $('#statsList .stats__list__accordion__body__stat__top__title').each((idx, ref) => {
+    $('#statsList .stats__list__accordion__body__stat__top__title, .stats__list__accordion__body__stat__top__right__stat-time').each((idx, ref) => {
         const elem = $(ref);
         models.push(elem.text());
     });
-    console.log('models: ', models);
-    return models;
+    let sorted = models.sort((a,b) => { return Number(a.slice(3,7)) - Number(b.slice(3,7)) });
+    return sorted;
 };
 
 module.exports = {

@@ -34,7 +34,7 @@ app.post('/getModels', (req, res) => {
   let makeWord = req.body.make.split(' '); 
   const make =  makeWord.length > 1 ? makeWord.join('-') : req.body.make;
   axios.get(`https://www.zeroto60times.com/vehicle-make/${make}-0-60-mph-times`).then((response) => {
-    const models = helpers.getModels(response.data);
+    let models = helpers.getModels(response.data);
     res.send(JSON.stringify({models: models}));
   });
 });
