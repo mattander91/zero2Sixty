@@ -7,12 +7,9 @@
       </select>
       <br>
       <label>Select Model</label>
-      <select>
-        <option v-for="(model) in models" :key="model">{{model}}</option>
+      <select v-model="model">
+        <option v-for="(vehicle) in models" :key="vehicle" :value="vehicle">{{vehicle.name}}</option>
       </select>
-      <br>
-      <label>Select Vehicle</label>
-      <select></select>
       <br>
       <button @click="getHTMLFile">Submit</button>
     </div>
@@ -21,16 +18,16 @@
 
 <script>
 
-// const axios = require('axios');
-// const helpers = require('../helpers/helpers.js');
+
 const axios = require('axios');
 
 export default {
   data() {
-    return {
-      models: null,
+    return {   
+      makes: null,
       make: null,
-      makes: null
+      models: null,
+      model: null
     }
   },
   methods: {
@@ -45,10 +42,6 @@ export default {
       axios.post('http://localhost:4000/getModels', {make: this.make}).then(response => {
         this.models = response.data.models;
       });
-    },
-
-    getVehicle() {
-
     }
 
   },
