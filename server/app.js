@@ -27,10 +27,8 @@ app.get('/getMakes', (req, res) => {
   });
 });
 
-//getYears
-
 app.post('/getModels', (req, res) => {
-  `https://www.zeroto60times.com/vehicle-make/ariel-atom-0-60-mph-times`
+  // `https://www.zeroto60times.com/vehicle-make/ariel-atom-0-60-mph-times`
   let makeWord = req.body.make.split(' '); 
   const make =  makeWord.length > 1 ? makeWord.join('-') : req.body.make;
   axios.get(`https://www.zeroto60times.com/vehicle-make/${make}-0-60-mph-times`).then((response) => {
@@ -42,5 +40,3 @@ app.post('/getModels', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at 3 http://localhost:${port}`)
 });
-
-//testing push
