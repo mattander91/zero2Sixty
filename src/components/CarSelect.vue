@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="car">
+    <div class="carInfo">
       <h2>CAR # 1</h2>
       <div v-if="makes">
         <label>Select Manufacturer</label>
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div class="car">
+    <div class="carInfo">
       <h2>CAR # 2</h2>
       <div v-if="makes">
         <label>Select Manufacturer</label>
@@ -49,6 +49,14 @@
       </div>
     </div>
 
+    <div class="track t1">
+      <car></car>
+    </div>
+
+    <div class="track t2">
+      <car></car>
+    </div>
+
   </div>
 </template>
 
@@ -56,7 +64,8 @@
 
 
 const axios = require('axios');
-import Loading from '@/components/Loading.vue'
+import Loading from '@/components/Loading.vue';
+import Car from '@/components/Car.vue';
 
 export default {
   data() {
@@ -103,7 +112,8 @@ export default {
   },
 
   components: {
-    Loading
+    Loading,
+    Car
   },
 
   name: 'CarSelect',
@@ -113,6 +123,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  .track {
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    border: 1px solid;
+  }
+
+  .t1 {
+    bottom: 13%;
+  }
+
+  .t2 {
+    bottom: 0%;
+  }
+
+
   h3 {
     margin: 40px 0 0;
   }
@@ -150,7 +177,7 @@ export default {
     text-align: left;
   }
 
-  .car {
+  .carInfo {
     display: inline-block;
     width: 45%;
     border: 3px solid black;
